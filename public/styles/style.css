@@ -109,3 +109,48 @@ main {
     } 
 
 }
+
+/* Persoons gegevens tabel */
+table {
+    text-align: left;
+    border-collapse: collapse; 
+    font-size: var(--font-size-xs);
+
+    /* Before's en after's zijn de middelste ringen links van de notebook */
+   &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        background: grey;
+        border: 10px solid black;
+        border-radius: 50px;
+        height: 0.5em;
+        width:1.8em;
+        left: -1.5em;
+    }
+
+    &::before {
+        top: 14em;
+    }
+
+    &::after {
+        bottom: 14em;
+    }
+    
+    tr {
+        border-bottom: 1px solid green;
+        td {
+            color: var(--text-color);
+            font-family: pacifico;
+            letter-spacing: 1px;
+            padding-left: 0.5em;
+            
+            
+        }
+    }
+
+    h2 {
+        font-size: var(--font-size-xs); 
+        margin: 0;
+    }
+}
