@@ -62,4 +62,14 @@ main {
     &::after {
         bottom: 3em;
     }
+    
+    img {
+        margin-bottom: 0.5em;
+        aspect-ratio: 1;
+        max-width: 8em;
+        max-width: 8em;
+        object-fit: cover;
+        object-position: 40%;
+        border: 5px solid var(--light-color);
+    }
 }
