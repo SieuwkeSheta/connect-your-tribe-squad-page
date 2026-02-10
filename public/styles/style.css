@@ -25,3 +25,7 @@ html {
         src: url('../fonts/Pacifico.ttf');
     }
 }
+
+main {
+    padding: 0.5em;
+}
