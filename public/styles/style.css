@@ -154,3 +154,13 @@ table {
         margin: 0;
     }
 }
+
+.bio {
+    margin-top: 2em;
+    text-align: center;
+    background-image: url(../assets/background-blob.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    padding: 1em 2em 2em;
+}
