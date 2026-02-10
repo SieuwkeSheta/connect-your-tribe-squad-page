@@ -29,3 +29,37 @@ html {
 main {
     padding: 0.5em;
 }
+
+/* Persoons gegevens */
+.person_data {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background: #FBE9D8;
+    border: 10px solid black;
+    border-radius: 5px;
+    margin-top: 1em;
+    padding: 1.5em 1em 1em 2em;
+    position: relative;
+
+    /* Before's en after's zijn de buitenste ringen links van de notebook */
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        background: grey;
+        border: 10px solid black;
+        border-radius: 50px;
+        height: 0.5em;
+        width:1.8em;
+        left: -1.5em;
+    }
+
+    &::before {
+        top: 3em;
+    }
+
+    &::after {
+        bottom: 3em;
+    }
+}
