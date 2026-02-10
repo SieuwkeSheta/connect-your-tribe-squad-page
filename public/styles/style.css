@@ -1,0 +1,9 @@
+/* Algemeen */
+html {
+    font-family: Arial, Helvetica, sans-serif;
+
+    /* Scrollen in html element-gaat smooth */
+    @media (prefers-reduced-motion: no-preference) {
+        scroll-behavior: smooth;
+    }
+}
