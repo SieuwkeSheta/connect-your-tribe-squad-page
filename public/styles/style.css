@@ -43,8 +43,10 @@ html {
     }
 }
 
-main {
+body {
     padding: 0.5em;
+    display: grid;
+    justify-content: center;
 }
 
 /* Persoons gegevens */
