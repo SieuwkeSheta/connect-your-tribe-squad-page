@@ -49,16 +49,170 @@ body {
     justify-content: center;
 }
 
-/* Persoons gegevens */
-.person_data {
-    display: grid;
+
+
+/* Filter en sorteren/ header */
+.filter-and-sort-wrapper {
+    display: flex;
     justify-content: center;
     align-items: center;
-    background: #FBE9D8;
-    border: 10px solid black;
-    border-radius: 5px;
-    margin-top: 1em;
-    padding: 1.5em 1em 1em 2em;
+    gap: 1em;
+
+    background: var(--second-light-color);
+    box-shadow: 2px -1px 6px 0px rgba(0,0,0,0.24);
+
+    padding: 0.5em;
+    margin: 0 1em;
+
+    /* Sorteer alfabetische volgorde op index.liquid */
+    .sort-a-z {
+        display: flex;
+        gap: 0.2em;
+        text-decoration: none;
+        color: inherit;
+        padding: 0.5em;
+        font-weight: 600;
+
+        &:hover {
+            svg {
+                animation-name: --rotate;
+                animation-duration: 1.5s;
+                animation-timing-function: ease-out;
+                animation-fill-mode: forwards;
+            }
+        }
+
+        &:active {
+            color: black;
+
+            svg {
+                fill: black;
+            }
+        } 
+    }
+
+    /* Filter op seizoenen op index.liquid en season.liquid*/
+    details {
+        position: relative;
+        z-index: 1;
+        padding: 0.5em;
+        font-weight: 700;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &[open]::details-content {
+        display: grid;
+        position: absolute;
+        top: 2em;
+        background: var(--second-light-color);
+        border-radius: 0 0 5px 5px;
+        padding: 0.5em 1em;
+        text-underline-offset: 0.1em;
+        line-height: 1.8;
+        box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.228);
+        }
+
+        /* Links naar fav. seizoenen */
+        a {
+            text-underline-offset: 0.3em;
+            color: inherit;
+
+            &:active {
+                color: var(--text-color);
+            }
+
+            /* Lente filter */
+            &:nth-of-type(1){
+                &:hover {
+                    color: rgb(0, 124, 0);
+                }
+                &::after {
+                    content:'🌱';
+                } 
+            }
+
+            /* Zomer filter */
+            &:nth-of-type(2){
+                &:hover {
+                    color: rgb(220, 69, 149);
+                }
+                &::after {
+                    content:'🌞';
+                } 
+            }
+
+            /* Herfst filter */
+            &:nth-of-type(3){
+                &:hover {
+                    color: rgb(255, 90, 1);
+                }
+                &::after {
+                    content:'🍁';
+                } 
+            }
+
+            /* Winter filter */
+            &:nth-of-type(4){
+                &:hover {
+                    color: rgb(19, 146, 250);
+                }
+                &::after {
+                    content:'❄️';
+                } 
+            }
+        }
+    }
+
+    /* 'Terug naar index/ homepagina' en 'ga naar stickers' op student.liquid */
+    .back-to-homepage,
+    .go-to-stickers  {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2em;
+        color: inherit;
+        font-weight: 700;
+        transition: 0.2s;
+        padding: 0.5em 0em;
+        text-decoration: none;
+
+        &:hover {
+            color: rgb(75, 75, 75);
+            
+
+            svg {
+                fill: rgb(75, 75, 75);
+            }
+        }
+    }
+
+    .back-to-homepage:hover svg {
+        transform: translateX(-0.3em);
+    }
+
+    .go-to-stickers:hover svg {
+        transform: translateY(0.3em);
+    }
+
+    /* Op student.liquid pagina */
+    h2 {
+        font-size: var(--font-size-s);
+        margin: 0;
+    }
+}
+
+/* Animatie voor sorteer knop */
+@keyframes --rotate {
+    50% {
+        transform: rotateX(180deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+
     position: relative;
 
     /* Before's en after's zijn de buitenste ringen links van de notebook */
