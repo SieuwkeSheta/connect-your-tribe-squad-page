@@ -6,13 +6,20 @@ html {
     @media (prefers-reduced-motion: no-preference) {
         scroll-behavior: smooth;
     }
+
+    color: var(--dark-text-color);
 }
 
 /* Custom properties */
 :root {
     /* Custom colors */
     --text-color: rgb(20, 0, 172);
+    --dark-text-color: rgb(23, 23, 23);
     --light-color: rgb(255, 255, 255);
+    --second-light-color: rgb(241, 241, 241);
+    --warm-light-color: rgb(251, 233, 216);
+    --dark-border-color: rgb(0, 0, 0);
+    --max-width-notebook: 25em;
 
     --font-size-l: 1.6rem;
     --font-size-m: 1.4rem;
@@ -23,6 +30,16 @@ html {
     @font-face {
         font-family: 'pacifico';
         src: url('../fonts/Pacifico.ttf');
+    }
+
+    @font-face {
+        font-family: 'royalbrand';
+        src: url('../fonts/RoyalBrand-Regular.otf');
+    }
+
+    @font-face {
+        font-family: 'au bord de la seine';
+        src: url('../fonts/Au Bord de la Seine.ttf');
     }
 }
 
