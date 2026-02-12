@@ -389,3 +389,38 @@ table {
     }
 }
 
+/* Wrapper met social media links */
+.social-media-links {
+    list-style: '';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0;
+    margin: 0;
+    gap: 1em;
+    padding: 0.5em;
+
+    @media (min-width: 800px) {
+      padding-top: 0;
+    }
+
+    a {
+      display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        text-decoration: 1px solid underline;
+        font-weight: 600;
+        transition: 0.1s;
+
+        svg {
+          width: 2em;
+        }
+
+        &:hover {
+          transform: scale(1.1);
+        }
+    } 
+
+}
