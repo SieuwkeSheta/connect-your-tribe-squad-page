@@ -44,6 +44,7 @@ app.engine('liquid', engine.express());
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set('views', './views')
 
+
 // Zorg dat werken met request data (volgende week) makkelijker wordt
 app.use(express.urlencoded({extended: true}))
 
@@ -128,6 +129,25 @@ app.get('/student/:id', async function (request, response) {
   const personDetailResponse = await fetch('https://fdnd.directus.app/items/person/' + request.params.id)
   // En haal daarvan de JSON op
   const personDetailResponseJSON = await personDetailResponse.json()
+
+  const params = {
+    // Sorteer op naam
+    'sort': 'name',
+
+    // Geef aan welke data je per persoon wil terugkrijgen
+    'fields': '*,squads.*',
+
+    // Combineer meerdere filters
+    'filter[squads][squad_id][tribe][name]': 'FDND Jaar 1',
+    // Filter eventueel alleen op een bepaalde squad
+    // 'filter[squads][squad_id][name]': '1I',
+    'filter[squads][squad_id][name]': '1J',
+    'filter[squads][squad_id][cohort]': '2526'
+  }
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?' + new URLSearchParams(params))
+
+  // En haal daarvan de JSON op
+  const personResponseJSON = await personResponse.json()
   
   // Render student.liquid uit de views map en geef de opgehaalde data mee als variable, genaamd person
   // Geef ook de eerder opgehaalde squad data mee aan de view
