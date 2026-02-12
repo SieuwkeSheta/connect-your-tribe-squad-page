@@ -213,15 +213,25 @@ body {
 }
 
 
+
+/* filter en sorteer studenten lijst op index.liquid en season.liquid*/
+.student-list {
     position: relative;
+    background: var(--warm-light-color);
+    border: 10px solid var(--dark-border-color);
+    border-radius: 5px;
+    box-shadow: 1px 3px 10px rgb(81, 81, 81);
+    padding: 1em 2em;
+    margin: 0;
+    width: clamp(15.2em, 65dvw, var(--max-width-notebook));
 
     /* Before's en after's zijn de buitenste ringen links van de notebook */
     &::before,
     &::after {
         content: '';
         position: absolute;
-        background: grey;
-        border: 10px solid black;
+        background: rgb(128, 128, 128);
+        border: 10px solid var(--dark-border-color);
         border-radius: 50px;
         height: 0.5em;
         width:1.8em;
@@ -235,52 +245,53 @@ body {
     &::after {
         bottom: 3em;
     }
-    
-    img {
-        margin-bottom: 0.5em;
-        aspect-ratio: 1;
-        max-width: 8em;
-        max-width: 8em;
-        object-fit: cover;
-        object-position: 40%;
-        border: 5px solid var(--light-color);
+
+    h2 {
+        margin: 0;
+        padding-bottom: 0.5em;
     }
 
-     /* Wrapper met social media links */
     ul {
-      list-style: '';
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-left: 0;
-      margin: 0;
-      gap: 1em;
-      
+        padding: 1em 1.5em 2em 1.5em;
+        margin: 0;
+        background:var(--light-color);
+        line-height: 1.6;
 
-      @media (min-width: 800px) {
-        padding-top: 0;
-      }
+        list-style: circle;
+
+        li {
+            border-bottom: 1px solid black;
+            transition: 0.6s;
+        }
+
+        a {
+            color: var(--text-color);
+            font-weight: 600;
+            text-decoration: none;
+            
+
+            svg {
+                fill: var(--text-color);
+            }
+
+            &:hover {
+                color: var(--dark-text-color);
+
+                svg {
+                    fill: var(--dark-text-color);
+                    transform: translateX(0.5em);
+                }
+            }
+
+            &:active {
+                color: rgb(96, 76, 250);
+
+                svg {
+                    fill: rgb(96, 76, 250);
+                }
+            }
+        }
     }
-
-    /* Social media links */
-    a {
-      display: inline-flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: black;
-        text-decoration: none;
-        font-weight: 600;
-
-        svg {
-          width: 2em;
-        }
-
-        &:hover {
-          text-decoration: 1px solid underline;
-        }
-    } 
-
 }
 
 /* Persoons gegevens tabel */
