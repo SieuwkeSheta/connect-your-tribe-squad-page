@@ -294,14 +294,26 @@ body {
     }
 }
 
-/* Persoons gegevens tabel */
-table {
-    text-align: left;
-    border-collapse: collapse; 
-    font-size: var(--font-size-xs);
 
-    /* Before's en after's zijn de middelste ringen links van de notebook */
-   &::before,
+/* Styling voor student.liquid */
+/* Achtergrond notebook */
+.student-page {
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background: var(--warm-light-color);
+    border: 10px solid var(--dark-border-color);
+    border-radius: 5px;
+    box-shadow: 1px 3px 10px rgb(81, 81, 81);
+    padding: 1.5em 1em 1em 2em;
+    position: relative;
+
+    width: clamp(16.4em, 65dvw, var(--max-width-notebook));
+
+
+    /* Before's en after's zijn de buitenste ringen links van de notebook */
+    &::before,
     &::after {
         content: '';
         position: absolute;
@@ -314,18 +326,36 @@ table {
     }
 
     &::before {
-        top: 14em;
+        top: 3em;
     }
 
     &::after {
-        bottom: 14em;
+        bottom: 3em;
     }
+}
+
+/* Profielfoto */
+.profile-picture {
+    margin-bottom: 0.5em;
+    aspect-ratio: 1;
+    max-width: 10em;
+    object-fit: cover;
+    object-position: 40%;
+    border: 5px solid var(--light-color);
+}
+
+/* Persoons gegevens tabel */
+table {
+    text-align: left;
+    border-collapse: collapse; 
     
     tr {
-        border-bottom: 1px solid green;
+        border-bottom: 1px solid rgb(125, 125, 125);
         td {
             color: var(--text-color);
-            font-family: pacifico;
+            font-family: au bord de la seine, cursive;
+            font-weight: 700;
+            font-size: var(--font-size-s);
             letter-spacing: 1px;
             padding-left: 0.5em;
             
@@ -334,8 +364,9 @@ table {
     }
 
     h2 {
-        font-size: var(--font-size-xs); 
+        font-size: var(--font-size-s); 
         margin: 0;
+        font-weight: 700;
     }
 }
 
@@ -347,4 +378,14 @@ table {
     background-position: center;
     background-size: 100% 100%;
     padding: 1em 2em 2em;
+    
+
+    p:nth-of-type(1) {
+        font-weight: 700;
+    }
+
+    p:nth-of-type(2) {
+        max-width: 20em;
+    }
 }
+
