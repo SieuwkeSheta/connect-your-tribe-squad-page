@@ -103,27 +103,25 @@
         <fieldset>
             <legend>Stickervel</legend>
             <label>
-                <input type="radio">
+                <input type="radio" name="emoji">
                 <img src="/assets/smiling_face_with_3_hearts.png" alt="Smiling face with 3 hearts emoji" width="50">
             </label>
             <label>
-                <input type="radio">
-                <img src="/assets/nauseated_face.png" alt="Smiling clown emoji" width="50">
+                <input type="radio" name="emoji">
+                <img src="/assets/nauseated_face.png" alt="Nauseated emoji" width="50">
             </label>
             <label>
-                <input type="radio">
+                <input type="radio" name="emoji">
                 <img src="/assets/partying_face.png" alt="Partying face emoji" width="50">
             </label>
             <label>
-                <input type="radio">
+                <input type="radio" name="emoji">
                 <img src="/assets/sunglasses.png" alt="Sunglasses face emoji" width="50">
             </label>
         </fieldset>
-    <form>
+    </form>
 
 </main>
 
-<details>
-    {{ person |json }}
-</details>
+
 {% render 'partials/foot.liquid', squads: squads %}
