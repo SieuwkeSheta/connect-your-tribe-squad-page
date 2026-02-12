@@ -225,6 +225,41 @@ app.get('/zomer', async function (request, response) {
   response.render('season.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data, summer: true})
 })
 
+// Maak een GET route voor de season.liquid voor het filteren van seizoenen (herfst)
+app.get('/herfst', async function (request, response) {
+
+  // Haal alle personen uit de WHOIS API op, van dit jaar, gesorteerd op naam
+  const params = {
+    // Sorteer op naam
+    'sort': 'name',
+
+    // Geef aan welke data je per persoon wil terugkrijgen
+    'fields': '*,squads.*',
+
+    // Combineer meerdere filters
+    'filter[squads][squad_id][tribe][name]': 'FDND Jaar 1',
+    // Filter eventueel alleen op een bepaalde squad
+    // 'filter[squads][squad_id][name]': '1I',
+    'filter[squads][squad_id][name]': '1J',
+    'filter[squads][squad_id][cohort]': '2526',
+
+    // Seizoens filter
+    'filter[fav_season]' : 'Herfst'
+  }
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?' + new URLSearchParams(params))
+
+  // En haal daarvan de JSON op
+  const personResponseJSON = await personResponse.json()
+
+  // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
+  // Toon eventueel alle data in de console
+  // console.log(personResponseJSON)
+
+  // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
+  // Geef ook de eerder opgehaalde squad data mee aan de view
+  response.render('season.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data, autumn: true})
+})
+
 })
 
 
