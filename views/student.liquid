@@ -34,27 +34,27 @@
         <table>
             <tr>
                 <th>Naam:</th>
-                <td><h2>{{ person.name }}</h2></td>
+                <td><h2>{{ personDetail.name }}</h2></td>
             </tr>
             <tr>
                 <th>Bijnaam:</th>
-                <td>{{ person.nickname }}</td>
+                <td>{{ personDetail.nickname }}</td>
             </tr>
             <tr>
                 <th>Geboortedatum:</th>
-                <td>{{ person.birthdate |  date: '%B %d%q, %Y'}}</td>
+                <td>{{ personDetail.birthdate |  date: '%B %d%q, %Y'}}</td>
             </tr>
             <tr>
                 <th>Woonplaats:</th>
-                <td>{{ person.residency }}</td>
+                <td>{{ personDetail.residency }}</td>
             </tr>
             <tr>
                 <th>Schoenmaat:</th>
-                <td>{{ person.shoe_size }}</td>
+                <td>{{ personDetail.shoe_size }}</td>
             </tr>
             <tr>
                 <th>Fav. kleur:</th>
-                <td style="color:{{person.fav_color }};">{{ person.fav_color}}</td>
+                <td style="color:{{personDetail.fav_color }};">{{ personDetail.fav_color}}</td>
             </tr>
             <tr>
                 <th>Fav. dier:</th>
