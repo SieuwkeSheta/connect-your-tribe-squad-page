@@ -424,3 +424,132 @@ table {
     } 
 
 }
+
+
+
+/* Styling van stickers */
+.stickers {
+    display: flex;
+    justify-content: center;
+    margin-block: 1em;
+    padding-block: 1em;
+
+    label {
+        padding: 0 0.5em;
+        position: relative;
+        transition: 0.3s;
+
+        &:hover {
+            cursor: pointer;
+
+            img {
+                scale: 1.1;
+            }
+        }
+
+        input {
+            position: absolute;
+            inset: 0;
+            appearance: none;
+
+            /* Actieve emoji */
+            &:checked {
+                padding-bottom: 1em;
+                border-bottom: 2px solid var(--dark-text-color);
+            }
+        }
+
+    }
+    
+}
+
+/* Algemene styling als er op een emoji is geklikt */
+.stickers label:has(:checked) {
+    &:hover {
+        img {
+            scale: 1;
+        }      
+    }
+    img {
+        animation-duration: 0.8s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+    }
+}
+
+/* Hartjes emoji als aangeklikt */
+.stickers label:nth-of-type(1):has(:checked) img{
+    animation-name: --hearts-emoji;
+}
+
+@keyframes --hearts-emoji {
+    50% {
+        transform: translate(13em, -11.5em) rotate(30deg) scale(1.8);
+    }
+    80% {
+        transform: translate(13em, -12.5em) rotate(30deg) scale(2);
+    }
+    100% {
+        transform: translate(13em, -11.5em) rotate(30deg) scale(1.8);
+    }
+}
+
+/* Kots emoji als aangeklikt*/
+.stickers label:nth-of-type(2):has(:checked) img{
+    animation-name: --nauseated-emoji;
+}
+
+@keyframes --nauseated-emoji {
+    50% {
+        transform: translate(9em, -11.5em) rotate(30deg) scale(1.8);
+    }
+    80% {
+        transform: translate(9em, -12.5em) rotate(30deg) scale(2);
+
+    }
+    100% {
+        transform: translate(9em, -11.5em) rotate(30deg) scale(1.8);
+
+    }
+}
+
+/* Feest emoji als aangeklikt*/
+.stickers label:nth-of-type(3):has(:checked) img{
+    animation-name: --party-emoji;
+}
+
+@keyframes --party-emoji {
+    50% {
+        transform: translate(4.5em, -11.5em) rotate(30deg) scale(1.8);
+    }
+    80% {
+        transform: translate(4.5em, -12.5em) rotate(30deg) scale(2);
+
+    }
+    100% {
+        transform: translate(4.5em, -11.5em) rotate(30deg) scale(1.8);
+
+    }
+}
+
+/* Cool emoji als aangeklikt*/
+.stickers label:nth-of-type(4):has(:checked) img{
+    animation-name: --cool-emoji;
+}
+
+@keyframes --cool-emoji {
+    50% {
+        transform: translate(0, -11.5em) rotate(30deg) scale(1.8);
+    }
+    80% {
+        transform: translate(0, -12.5em) rotate(30deg) scale(2);
+
+    }
+    100% {
+        transform: translate(0, -11.5em) rotate(30deg) scale(1.8);
+
+    }
+}
+
+
+
