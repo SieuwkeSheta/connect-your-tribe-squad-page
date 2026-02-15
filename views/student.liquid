@@ -27,8 +27,14 @@
     {% comment %} Persoons gegevens {% endcomment %}
     <section class="student-page">
         
+        {% comment %} Als iemand een avatar foto heeft, dus avatar is niet gelijk aan 'null', laat avatar foto zien! {% endcomment %}
+        {% if personDetail.avatar != null %}
+        <img src="{{ personDetail.avatar }}" width="200" alt="Profile picture" class="profile-picture">
+        {% comment %} Zo niet, laat dan de mugshot foto zien {% endcomment %}
+        {% else %}
         <img src="https://fdnd.directus.app/assets/{{ personDetail.mugshot }}?width=600" width="200" alt="Profile picture" class="profile-picture">
-
+        {% endif  %}
+        
         {% comment %} Persoons gegevens tabel {% endcomment %}
         <table>
             <tr>
