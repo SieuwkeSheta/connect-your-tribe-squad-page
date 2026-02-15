@@ -42,7 +42,7 @@ body {
 
 
 /* Filter en sorteren/ header */
-.filter-and-sort-wrapper {
+Header {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,7 +55,7 @@ body {
     margin: 0 1em;
 
     /* Sorteer alfabetische volgorde op index.liquid */
-    .sort-a-z {
+    .sort-name-order-link {
         display: flex;
         gap: 0.2em;
         text-decoration: none;
