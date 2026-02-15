@@ -21,6 +21,7 @@ html {
     /* Custom colors */
     --text-color: rgb(20, 0, 172);
     --dark-text-color: rgb(23, 23, 23);
+    --dark-color-hover: rgb(75, 75, 75);
     --light-color: rgb(255, 255, 255);
     --second-light-color: rgb(241, 241, 241);
     --warm-light-color: rgb(251, 233, 216);
@@ -168,11 +169,11 @@ Header {
         text-decoration: none;
 
         &:hover {
-            color: rgb(75, 75, 75);
+            color: var(--dark-color-hover);
             
 
             svg {
-                fill: rgb(75, 75, 75);
+                fill: var(--dark-color-hover);
             }
         }
     }
