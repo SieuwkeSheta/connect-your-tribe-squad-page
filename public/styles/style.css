@@ -94,15 +94,15 @@ Header {
         }
 
         &[open]::details-content {
-        display: grid;
-        position: absolute;
-        top: 2em;
-        background: var(--second-light-color);
-        border-radius: 0 0 5px 5px;
-        padding: 0.5em 1em;
-        text-underline-offset: 0.1em;
-        line-height: 1.8;
-        box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.228);
+            display: grid;
+            position: absolute;
+            top: 2em;
+            background: var(--second-light-color);
+            border-radius: 0 0 5px 5px;
+            padding: 0.5em 1em;
+            text-underline-offset: 0.1em;
+            line-height: 1.8;
+            box-shadow: 2px 3px 4px 0px rgba(0, 0, 0, 0.228);
         }
 
         /* Links naar fav. seizoenen */
