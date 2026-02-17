@@ -1,0 +1,13 @@
+<ol>
+    {% for message in messages%}
+        <li>{{ message }}</li>
+    {% endfor %}
+</ol>
+
+<form action="/berichten" method="POST">
+    <label>
+        Reactie
+        <textarea name="message"></textarea>
+    </label>
+    <button type="submit">Laat je reactie achter</button>
+</form>
