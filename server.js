@@ -122,6 +122,9 @@ app.get('/aflopend-alfabetische-volgorde', async function (request, response) {
 })
 
 
+// Vul hier jullie team naam in
+const teamName = 'Sunny';
+
 // Maak een GET route voor een detailpagina met een route parameter, id
 // Zie de documentatie van Express voor meer info: https://expressjs.com/en/guide/routing.html#route-parameters
 app.get('/student/:id', async function (request, response) {
@@ -144,15 +147,79 @@ app.get('/student/:id', async function (request, response) {
     'filter[squads][squad_id][name]': '1J',
     'filter[squads][squad_id][cohort]': '2526'
   }
+  
   const personResponse = await fetch('https://fdnd.directus.app/items/person/?' + new URLSearchParams(params))
 
   // En haal daarvan de JSON op
   const personResponseJSON = await personResponse.json()
+
+
+  // Filter eerst de berichten die je wilt zien, net als bij personen
+  // Deze tabel wordt gedeeld door iedereen, dus verzin zelf een handig filter,
+  // bijvoorbeeld je teamnaam, je projectnaam, je person ID, de datum van vandaag, etc..
+  const params2 = {
+    'filter[for]': `id-${request.params.id}`,
+  }
+  console.log(`id-${request.params.id}`)
+
+
+  // Maak hiermee de URL aan, zoals we dat ook in de browser deden
+  const apiURL = 'https://fdnd.directus.app/items/messages?' + new URLSearchParams(params2)
+
+  // Laat eventueel zien wat de filter URL is
+  // (Let op: dit is _niet_ de console van je browser, maar van NodeJS, in je terminal)
+  // console.log('API URL voor messages:', apiURL)
+
+  // Haal daarna de messages data op
+  const messagesResponse = await fetch(apiURL)
+
+  // Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
+  const messagesResponseJSON = await messagesResponse.json()
+
+  // Controleer eventueel de data in je console
+  // console.log(messagesResponseJSON)
+
   
   // Render student.liquid uit de views map en geef de opgehaalde data mee als variable, genaamd person
   // Geef ook de eerder opgehaalde squad data mee aan de view
-  response.render('student.liquid', {personDetail: personDetailResponseJSON.data, squads: squadResponseJSON.data, persons: personResponseJSON.data})
+  response.render('student.liquid', {
+    personDetail: personDetailResponseJSON.data, 
+    squads: squadResponseJSON.data, 
+    persons: personResponseJSON.data,
+    teamName: teamName,
+    messages: messagesResponseJSON.data})
 })
+
+
+app.post('/student/:id', async function (request, response) {
+
+  // Stuur een POST request naar de messages tabel
+  // Een POST request bevat ook extra parameters, naast een URL
+  await fetch('https://fdnd.directus.app/items/messages', {
+
+    // Overschrijf de standaard GET method, want ook hier gaan we iets veranderen op de server
+    method: 'POST',
+
+    // Geef de body mee als JSON string
+    body: JSON.stringify({
+      // Dit is zodat we ons bericht straks weer terug kunnen vinden met ons filter
+      for: `id-${request.params.id}`,
+      // En dit zijn onze formuliervelden
+      from: request.body.from,
+      text: request.body.text
+    }),
+
+    // En vergeet deze HTTP headers niet: hiermee vertellen we de server dat we JSON doorsturen
+    // (In realistischere projecten zou je hier ook authentication headers of een sleutel meegeven)
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
+  });
+
+  // Stuur de browser daarna weer naar de homepage
+  response.redirect(303, '/student/:id')
+})
+
 
 
 // Maak een GET route voor de season.liquid voor het filteren van seizoenen (lente) 
