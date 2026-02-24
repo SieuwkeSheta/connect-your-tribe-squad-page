@@ -1,157 +1,189 @@
 {% render 'partials/head.liquid', title: person.name %}
 
-
 {% comment %} Menu knoppen {% endcomment %}
 <header>
-    <a href="/" class="back-to-homepage">
-        <svg width="10" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12.5757 19.895L11.4917 20.979C11.0327 21.438 10.2905 21.438 9.83643 20.979L0.344238 11.4917C-0.114746 11.0327 -0.114746 10.2905 0.344238 9.83643L9.83643 0.344238C10.2954 -0.114746 11.0376 -0.114746 11.4917 0.344238L12.5757 1.42822C13.0396 1.89209 13.0298 2.64893 12.5562 3.10303L6.67236 8.7085H20.7056C21.355 8.7085 21.8774 9.23096 21.8774 9.88037V11.4429C21.8774 12.0923 21.355 12.6147 20.7056 12.6147H6.67236L12.5562 18.2202C13.0347 18.6743 13.0444 19.4312 12.5757 19.895Z" fill=""/>
-        </svg>
-        Index
-    </a>
-    
-    <h2>Squad 1J</h2>  
+  <a href="/" class="back-to-homepage">
+    <svg width="10" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12.5757 19.895L11.4917 20.979C11.0327 21.438 10.2905 21.438 9.83643 20.979L0.344238 11.4917C-0.114746 11.0327 -0.114746 10.2905 0.344238 9.83643L9.83643 0.344238C10.2954 -0.114746 11.0376 -0.114746 11.4917 0.344238L12.5757 1.42822C13.0396 1.89209 13.0298 2.64893 12.5562 3.10303L6.67236 8.7085H20.7056C21.355 8.7085 21.8774 9.23096 21.8774 9.88037V11.4429C21.8774 12.0923 21.355 12.6147 20.7056 12.6147H6.67236L12.5562 18.2202C13.0347 18.6743 13.0444 19.4312 12.5757 19.895Z" fill=""/>
+    </svg>
+    Index
+  </a>
 
-    <a href="#stickers" class="go-to-stickers">
-        Stickervel
-        <svg width="10" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-            <path d="M19.895 9.30176L20.979 10.3857C21.438 10.8447 21.438 11.5869 20.979 12.041L11.4917 21.5332C11.0327 21.9922 10.2905 21.9922 9.83643 21.5332L0.344238 12.041C-0.114746 11.582 -0.114746 10.8398 0.344238 10.3857L1.42822 9.30176C1.89209 8.83789 2.64893 8.84766 3.10303 9.32129L8.7085 15.2051V1.17188C8.7085 0.522461 9.23096 0 9.88037 0H11.4429C12.0923 0 12.6147 0.522461 12.6147 1.17188V15.2051L18.2202 9.32129C18.6743 8.84277 19.4312 8.83301 19.895 9.30176Z" fill=""/>
-        </svg>
-    </a>
+  <h2>Squad 1J</h2>
 
+  <a href="#stickers" class="go-to-stickers">
+    Stickervel
+    <svg width="10" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19.895 9.30176L20.979 10.3857C21.438 10.8447 21.438 11.5869 20.979 12.041L11.4917 21.5332C11.0327 21.9922 10.2905 21.9922 9.83643 21.5332L0.344238 12.041C-0.114746 11.582 -0.114746 10.8398 0.344238 10.3857L1.42822 9.30176C1.89209 8.83789 2.64893 8.84766 3.10303 9.32129L8.7085 15.2051V1.17188C8.7085 0.522461 9.23096 0 9.88037 0H11.4429C12.0923 0 12.6147 0.522461 12.6147 1.17188V15.2051L18.2202 9.32129C18.6743 8.84277 19.4312 8.83301 19.895 9.30176Z" fill=""/>
+    </svg>
+  </a>
 </header>
 
 {% comment %} Studenten details pagina {% endcomment %}
 <main>
+  {% comment %} Persoons gegevens {% endcomment %}
+  <section class="student-page">
+    {% comment %} Als iemand een avatar foto heeft, dus avatar is niet gelijk aan 'null', laat avatar foto zien! {% endcomment %}
+    {% if personDetail.avatar != null %}
+      <img src="{{ personDetail.avatar }}" width="200" alt="Profile picture" class="profile-picture">
+      {% comment %} Zo niet, laat dan de mugshot foto zien {% endcomment %}
+    {% else %}
+      <img
+        src="https://fdnd.directus.app/assets/{{ personDetail.mugshot }}?width=600"
+        width="200"
+        alt="Profile picture"
+        class="profile-picture"
+      >
+    {% endif %}
 
-    {% comment %} Persoons gegevens {% endcomment %}
-    <section class="student-page">
-        
-        {% comment %} Als iemand een avatar foto heeft, dus avatar is niet gelijk aan 'null', laat avatar foto zien! {% endcomment %}
-        {% if personDetail.avatar != null %}
-        <img src="{{ personDetail.avatar }}" width="200" alt="Profile picture" class="profile-picture">
-        {% comment %} Zo niet, laat dan de mugshot foto zien {% endcomment %}
-        {% else %}
-        <img src="https://fdnd.directus.app/assets/{{ personDetail.mugshot }}?width=600" width="200" alt="Profile picture" class="profile-picture">
-        {% endif  %}
-        
-        {% comment %} Persoons gegevens tabel {% endcomment %}
-        <table>
-            <tr>
-                <th>Naam:</th>
-                <td><h2>{{ personDetail.name }}</h2></td>
-            </tr>
-            <tr>
-                <th>Bijnaam:</th>
-                <td>{{ personDetail.nickname }}</td>
-            </tr>
-            <tr>
-                <th>Geboortedatum:</th>
-                <td>{{ personDetail.birthdate |  date: '%B %d%q, %Y'}}</td>
-            </tr>
-            <tr>
-                <th>Woonplaats:</th>
-                <td>{{ personDetail.residency }}</td>
-            </tr>
-            <tr>
-                <th>Schoenmaat:</th>
-                <td>{{ personDetail.shoe_size }}</td>
-            </tr>
-            <tr>
-                <th>Fav. kleur:</th>
-                <td style="color:{{personDetail.fav_color }};">{{ personDetail.fav_color}}</td>
-            </tr>
-            <tr>
-                <th>Fav. dier:</th>
-                <td>{{ personDetail.fav_animal }}</td>
-            </tr>
-            <tr>
-                <th>Fav. seizoen:</th>
-                <td>{{ personDetail.fav_season }}</td>
-            </tr>
-            <tr>
-                <th>Fav. emoji:</th>
-                <td>{{ personDetail.fav_emoji }}</td>
-            </tr>
-        </table>
+    {% comment %} Persoons gegevens tabel {% endcomment %}
+    <table>
+      <tr>
+        <th>Naam:</th>
+        <td>
+          <h2>{{ personDetail.name }}</h2>
+        </td>
+      </tr>
+      <tr>
+        <th>Bijnaam:</th>
+        <td>{{ personDetail.nickname }}</td>
+      </tr>
+      <tr>
+        <th>Geboortedatum:</th>
+        <td>{{ personDetail.birthdate | date: '%B %d%q, %Y' }}</td>
+      </tr>
+      <tr>
+        <th>Woonplaats:</th>
+        <td>{{ personDetail.residency }}</td>
+      </tr>
+      <tr>
+        <th>Schoenmaat:</th>
+        <td>{{ personDetail.shoe_size }}</td>
+      </tr>
+      <tr>
+        <th>Fav. kleur:</th>
+        <td style="color:{{personDetail.fav_color }};">{{ personDetail.fav_color }}</td>
+      </tr>
+      <tr>
+        <th>Fav. dier:</th>
+        <td>{{ personDetail.fav_animal }}</td>
+      </tr>
+      <tr>
+        <th>Fav. seizoen:</th>
+        <td>{{ personDetail.fav_season }}</td>
+      </tr>
+      <tr>
+        <th>Fav. emoji:</th>
+        <td>{{ personDetail.fav_emoji }}</td>
+      </tr>
+    </table>
 
-        <div class="bio">
-            <p>Bio</p>
-            <p>{{ personDetail.bio }}</p>
-        </div>
+    <div class="bio">
+      <p>Bio</p>
+      <p>{{ personDetail.bio }}</p>
+    </div>
 
-        {% comment %} Wrapper met social media links {% endcomment %}
-        <ul class="social-media-links">
-          <li> 
-              <a href="http://www.github.com/{{personDetail.github_handle}}" target="_blank">
-                  <svg width="40" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.36532 22.5456C9.36532 22.6614 9.23548 22.754 9.07177 22.754C8.88548 22.7714 8.75564 22.6787 8.75564 22.5456C8.75564 22.4298 8.88548 22.3371 9.04919 22.3371C9.21855 22.3198 9.36532 22.4124 9.36532 22.5456ZM7.60968 22.285C7.57016 22.4008 7.68306 22.534 7.85242 22.5687C7.99919 22.6266 8.16855 22.5687 8.20242 22.4529C8.23629 22.3371 8.12903 22.204 7.95968 22.1518C7.8129 22.1113 7.64919 22.1692 7.60968 22.285ZM10.1048 22.1866C9.94113 22.2271 9.82823 22.3371 9.84516 22.4703C9.8621 22.5861 10.0089 22.6614 10.1782 22.6208C10.3419 22.5803 10.4548 22.4703 10.4379 22.3545C10.421 22.2445 10.2685 22.1692 10.1048 22.1866ZM13.8194 0C5.98952 0 0 6.09668 0 14.1272C0 20.5481 3.94032 26.0426 9.56855 27.9764C10.2911 28.1096 10.5452 27.6522 10.5452 27.2758C10.5452 26.9169 10.5282 24.9368 10.5282 23.7209C10.5282 23.7209 6.57661 24.5894 5.74677 21.9955C5.74677 21.9955 5.10323 20.3107 4.17742 19.8764C4.17742 19.8764 2.88468 18.9674 4.26774 18.9848C4.26774 18.9848 5.67339 19.1006 6.44677 20.4786C7.68306 22.7135 9.75484 22.0708 10.5621 21.6887C10.6919 20.7623 11.0589 20.1196 11.4653 19.7375C8.30968 19.3785 5.12581 18.9096 5.12581 13.3397C5.12581 11.7475 5.55484 10.9485 6.45806 9.92954C6.31129 9.5532 5.83145 8.00153 6.60484 5.99825C7.78468 5.62191 10.5 7.5615 10.5 7.5615C11.629 7.23728 12.8427 7.06937 14.0452 7.06937C15.2476 7.06937 16.4613 7.23728 17.5903 7.5615C17.5903 7.5615 20.3056 5.61613 21.4855 5.99825C22.2589 8.00732 21.779 9.5532 21.6323 9.92954C22.5355 10.9543 23.0887 11.7533 23.0887 13.3397C23.0887 18.9269 19.7637 19.3727 16.6081 19.7375C17.1274 20.1949 17.5677 21.0634 17.5677 22.424C17.5677 24.3751 17.5508 26.7895 17.5508 27.2643C17.5508 27.6406 17.8105 28.098 18.5274 27.9648C24.1726 26.0426 28 20.5481 28 14.1272C28 6.09668 21.6492 0 13.8194 0ZM5.4871 19.9691C5.41371 20.027 5.43064 20.1602 5.52661 20.2702C5.61694 20.3628 5.74677 20.4033 5.82016 20.3281C5.89355 20.2702 5.87661 20.137 5.78064 20.027C5.69032 19.9343 5.56048 19.8938 5.4871 19.9691ZM4.87742 19.5001C4.8379 19.5754 4.89435 19.668 5.00726 19.7259C5.09758 19.7838 5.21048 19.7664 5.25 19.6854C5.28952 19.6101 5.23306 19.5175 5.12016 19.4596C5.00726 19.4248 4.91694 19.4422 4.87742 19.5001ZM6.70645 21.5613C6.61613 21.6366 6.65 21.8103 6.77984 21.9203C6.90968 22.0534 7.07339 22.0708 7.14677 21.9782C7.22016 21.9029 7.18629 21.7292 7.07339 21.6192C6.94919 21.486 6.77984 21.4687 6.70645 21.5613ZM6.0629 20.7102C5.97258 20.7681 5.97258 20.9186 6.0629 21.0518C6.15323 21.1849 6.30564 21.2428 6.37903 21.1849C6.46935 21.1097 6.46935 20.9591 6.37903 20.826C6.3 20.6928 6.15323 20.6349 6.0629 20.7102Z" fill=""/>
-                  </svg>
-                  Github
-              </a>
-          </li>
+    {% comment %} Wrapper met social media links {% endcomment %}
+    <ul class="social-media-links">
+      <li>
+        <a href="http://www.github.com/{{personDetail.github_handle}}" target="_blank">
+          <svg width="40" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9.36532 22.5456C9.36532 22.6614 9.23548 22.754 9.07177 22.754C8.88548 22.7714 8.75564 22.6787 8.75564 22.5456C8.75564 22.4298 8.88548 22.3371 9.04919 22.3371C9.21855 22.3198 9.36532 22.4124 9.36532 22.5456ZM7.60968 22.285C7.57016 22.4008 7.68306 22.534 7.85242 22.5687C7.99919 22.6266 8.16855 22.5687 8.20242 22.4529C8.23629 22.3371 8.12903 22.204 7.95968 22.1518C7.8129 22.1113 7.64919 22.1692 7.60968 22.285ZM10.1048 22.1866C9.94113 22.2271 9.82823 22.3371 9.84516 22.4703C9.8621 22.5861 10.0089 22.6614 10.1782 22.6208C10.3419 22.5803 10.4548 22.4703 10.4379 22.3545C10.421 22.2445 10.2685 22.1692 10.1048 22.1866ZM13.8194 0C5.98952 0 0 6.09668 0 14.1272C0 20.5481 3.94032 26.0426 9.56855 27.9764C10.2911 28.1096 10.5452 27.6522 10.5452 27.2758C10.5452 26.9169 10.5282 24.9368 10.5282 23.7209C10.5282 23.7209 6.57661 24.5894 5.74677 21.9955C5.74677 21.9955 5.10323 20.3107 4.17742 19.8764C4.17742 19.8764 2.88468 18.9674 4.26774 18.9848C4.26774 18.9848 5.67339 19.1006 6.44677 20.4786C7.68306 22.7135 9.75484 22.0708 10.5621 21.6887C10.6919 20.7623 11.0589 20.1196 11.4653 19.7375C8.30968 19.3785 5.12581 18.9096 5.12581 13.3397C5.12581 11.7475 5.55484 10.9485 6.45806 9.92954C6.31129 9.5532 5.83145 8.00153 6.60484 5.99825C7.78468 5.62191 10.5 7.5615 10.5 7.5615C11.629 7.23728 12.8427 7.06937 14.0452 7.06937C15.2476 7.06937 16.4613 7.23728 17.5903 7.5615C17.5903 7.5615 20.3056 5.61613 21.4855 5.99825C22.2589 8.00732 21.779 9.5532 21.6323 9.92954C22.5355 10.9543 23.0887 11.7533 23.0887 13.3397C23.0887 18.9269 19.7637 19.3727 16.6081 19.7375C17.1274 20.1949 17.5677 21.0634 17.5677 22.424C17.5677 24.3751 17.5508 26.7895 17.5508 27.2643C17.5508 27.6406 17.8105 28.098 18.5274 27.9648C24.1726 26.0426 28 20.5481 28 14.1272C28 6.09668 21.6492 0 13.8194 0ZM5.4871 19.9691C5.41371 20.027 5.43064 20.1602 5.52661 20.2702C5.61694 20.3628 5.74677 20.4033 5.82016 20.3281C5.89355 20.2702 5.87661 20.137 5.78064 20.027C5.69032 19.9343 5.56048 19.8938 5.4871 19.9691ZM4.87742 19.5001C4.8379 19.5754 4.89435 19.668 5.00726 19.7259C5.09758 19.7838 5.21048 19.7664 5.25 19.6854C5.28952 19.6101 5.23306 19.5175 5.12016 19.4596C5.00726 19.4248 4.91694 19.4422 4.87742 19.5001ZM6.70645 21.5613C6.61613 21.6366 6.65 21.8103 6.77984 21.9203C6.90968 22.0534 7.07339 22.0708 7.14677 21.9782C7.22016 21.9029 7.18629 21.7292 7.07339 21.6192C6.94919 21.486 6.77984 21.4687 6.70645 21.5613ZM6.0629 20.7102C5.97258 20.7681 5.97258 20.9186 6.0629 21.0518C6.15323 21.1849 6.30564 21.2428 6.37903 21.1849C6.46935 21.1097 6.46935 20.9591 6.37903 20.826C6.3 20.6928 6.15323 20.6349 6.0629 20.7102Z" fill=""/>
+          </svg>
+          Github
+        </a>
+      </li>
 
-          <li>
-              <a href="{{ personDetail.fav_spotify_track }}" target="_blank">
-                  <svg width="40" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12.1094 0C5.4248 0 0 5.4248 0 12.1094C0 18.7939 5.4248 24.2188 12.1094 24.2188C18.7939 24.2188 24.2188 18.7939 24.2188 12.1094C24.2188 5.4248 18.7939 0 12.1094 0ZM17.0264 17.8174C16.8213 17.8174 16.6943 17.7539 16.5039 17.6416C13.457 15.8057 9.91211 15.7275 6.41113 16.4453C6.2207 16.4941 5.97168 16.5723 5.83008 16.5723C5.35645 16.5723 5.05859 16.1963 5.05859 15.8008C5.05859 15.2979 5.35645 15.0586 5.72266 14.9805C9.72168 14.0967 13.8086 14.1748 17.2949 16.2598C17.5928 16.4502 17.7686 16.6211 17.7686 17.0654C17.7686 17.5098 17.4219 17.8174 17.0264 17.8174ZM18.3398 14.6143C18.0859 14.6143 17.915 14.502 17.7393 14.4092C14.6875 12.6025 10.1367 11.875 6.08887 12.9736C5.85449 13.0371 5.72754 13.1006 5.50781 13.1006C4.98535 13.1006 4.56055 12.6758 4.56055 12.1533C4.56055 11.6309 4.81445 11.2842 5.31738 11.1426C6.6748 10.7617 8.06152 10.4785 10.0928 10.4785C13.2617 10.4785 16.3232 11.2646 18.7354 12.7002C19.1309 12.9346 19.2871 13.2373 19.2871 13.6621C19.2822 14.1895 18.8721 14.6143 18.3398 14.6143ZM19.8535 10.8936C19.5996 10.8936 19.4434 10.8301 19.2236 10.7031C15.7471 8.62793 9.53125 8.12988 5.50781 9.25293C5.33203 9.30176 5.1123 9.37988 4.87793 9.37988C4.2334 9.37988 3.74023 8.87695 3.74023 8.22754C3.74023 7.56348 4.15039 7.1875 4.58984 7.06055C6.30859 6.55762 8.23242 6.31836 10.3271 6.31836C13.8916 6.31836 17.627 7.06055 20.3564 8.65234C20.7373 8.87207 20.9863 9.1748 20.9863 9.75586C20.9863 10.4199 20.4492 10.8936 19.8535 10.8936Z" fill=""/>
-                  </svg>
-              Spotify
-            </a>
-          </li>
-        </ul>
+      <li>
+        <a href="{{ personDetail.fav_spotify_track }}" target="_blank">
+          <svg width="40" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.1094 0C5.4248 0 0 5.4248 0 12.1094C0 18.7939 5.4248 24.2188 12.1094 24.2188C18.7939 24.2188 24.2188 18.7939 24.2188 12.1094C24.2188 5.4248 18.7939 0 12.1094 0ZM17.0264 17.8174C16.8213 17.8174 16.6943 17.7539 16.5039 17.6416C13.457 15.8057 9.91211 15.7275 6.41113 16.4453C6.2207 16.4941 5.97168 16.5723 5.83008 16.5723C5.35645 16.5723 5.05859 16.1963 5.05859 15.8008C5.05859 15.2979 5.35645 15.0586 5.72266 14.9805C9.72168 14.0967 13.8086 14.1748 17.2949 16.2598C17.5928 16.4502 17.7686 16.6211 17.7686 17.0654C17.7686 17.5098 17.4219 17.8174 17.0264 17.8174ZM18.3398 14.6143C18.0859 14.6143 17.915 14.502 17.7393 14.4092C14.6875 12.6025 10.1367 11.875 6.08887 12.9736C5.85449 13.0371 5.72754 13.1006 5.50781 13.1006C4.98535 13.1006 4.56055 12.6758 4.56055 12.1533C4.56055 11.6309 4.81445 11.2842 5.31738 11.1426C6.6748 10.7617 8.06152 10.4785 10.0928 10.4785C13.2617 10.4785 16.3232 11.2646 18.7354 12.7002C19.1309 12.9346 19.2871 13.2373 19.2871 13.6621C19.2822 14.1895 18.8721 14.6143 18.3398 14.6143ZM19.8535 10.8936C19.5996 10.8936 19.4434 10.8301 19.2236 10.7031C15.7471 8.62793 9.53125 8.12988 5.50781 9.25293C5.33203 9.30176 5.1123 9.37988 4.87793 9.37988C4.2334 9.37988 3.74023 8.87695 3.74023 8.22754C3.74023 7.56348 4.15039 7.1875 4.58984 7.06055C6.30859 6.55762 8.23242 6.31836 10.3271 6.31836C13.8916 6.31836 17.627 7.06055 20.3564 8.65234C20.7373 8.87207 20.9863 9.1748 20.9863 9.75586C20.9863 10.4199 20.4492 10.8936 19.8535 10.8936Z" fill=""/>
+          </svg>
+          Spotify
+        </a>
+      </li>
+    </ul>
+  </section>
 
-        
-    </section>
-
-    {% comment %} Stickervel {% endcomment %}
-    <form class="stickers" id="stickers">
-        <fieldset>
-            <legend>Stickervel</legend>
-            <label>
-                <input type="radio" name="emoji">
-                <img src="/assets/smiling_face_with_3_hearts.png" alt="Smiling face with 3 hearts emoji" width="50">
-            </label>
-            <label>
-                <input type="radio" name="emoji">
-                <img src="/assets/nauseated_face.png" alt="Nauseated emoji" width="50">
-            </label>
-            <label>
-                <input type="radio" name="emoji">
-                <img src="/assets/partying_face.png" alt="Partying face emoji" width="50">
-            </label>
-            <label>
-                <input type="radio" name="emoji">
-                <img src="/assets/sunglasses.png" alt="Sunglasses face emoji" width="50">
-            </label>
-        </fieldset>
+  {% comment %} Stickervel {% endcomment %}
+  {% if liked %}
+    <form method="post" class="stickers" id="stickers" action="/student/{{ personDetail.id }}/unlike">
+      <fieldset>
+        <legend>Stickervel</legend>
+        <label>
+          <input type="radio" name="text" checked>
+          <img src="/assets/smiling_face_with_3_hearts.png" alt="Smiling face with 3 hearts emoji" width="50">
+        </label>
+        <label>
+          <input type="radio" name="text">
+          <img src="/assets/nauseated_face.png" alt="Nauseated emoji" width="50">
+        </label>
+        <label>
+          <input type="radio" name="text">
+          <img src="/assets/partying_face.png" alt="Partying face emoji" width="50">
+        </label>
+        <label>
+          <input type="radio" name="text">
+          <img src="/assets/sunglasses.png" alt="Sunglasses face emoji" width="50">
+        </label>
+        <button type="submit" name="message" value="">Unlike 💔</button>
+      </fieldset>
     </form>
+  {% else %}
+    {% comment %} Stickervel {% endcomment %}
+    <form method="post" class="stickers" id="stickers" action="/student/{{ personDetail.id }}/like">
+      <fieldset>
+        <legend>Stickervel</legend>
+        <label>
+          <input type="radio" name="text">
+          <img src="/assets/smiling_face_with_3_hearts.png" alt="Smiling face with 3 hearts emoji" width="50">
+        </label>
+        <label>
+          <input type="radio" name="text">
+          <img src="/assets/nauseated_face.png" alt="Nauseated emoji" width="50">
+        </label>
+        <label>
+          <input type="radio" name="text">
+          <img src="/assets/partying_face.png" alt="Partying face emoji" width="50">
+        </label>
+        <label>
+          <input type="radio" name="text">
+          <img src="/assets/sunglasses.png" alt="Sunglasses face emoji" width="50">
+        </label>
+        <button>Stuur emoji</button>
+      </fieldset>
+    </form>
+  {% endif %}
 
-    <section>
-        <h2>Voeg een bericht toe</h2>
-        
-        <form method="post" action="/student/{{ personDetail.id }}">
-          <label>
-            Naam:
-            <input type="text" name="from" required>
-          </label>
-          <label>
-            Bericht:
-            <textarea name="text" required></textarea>
-          </label>
-          <button type="submit">Verstuur</button>
-        </form>
+  <section class="send-message">
+    <h2>Voeg een bericht toe</h2>
 
-        <h2>Huidige berichten</h2>
+    <form method="post" action="/student/{{ personDetail.id }}">
+      <label>
+        Naam:
+        <input type="text" name="from" required>
+      </label>
+      <label>
+        Bericht:
+        <textarea name="text" required></textarea>
+      </label>
+      <button type="submit">Verstuur</button>
+    </form>
+  </section>
 
-        {% for message in messages %}
-          <p>{{ message.from }}: {{ message.text }} @{{ message.created | date: '%d-%m-%Y %H:%M' }}</p>
-        {% else %}
-          <p>Er zijn nog geen berichten voor dit team.</p>
-        {% endfor %}
-    </section>
+  <section>
+    <h2>Huidige berichten</h2>
 
+    {% for message in messages %}
+      <div class="comments">
+        <p>{{ message.from }}:</p>
+        <p>{{ message.text }}</p>
+        <p>{{ message.created | date: '%d %b %Y' }}</p>
+      </div>
+    {% else %}
+      <p>Er zijn nog geen berichten voor deze persoon.</p>
+    {% endfor %}
+  </section>
 </main>
-
 
 {% render 'partials/foot.liquid', squads: squads %}
